@@ -1,5 +1,10 @@
 # Database Queries
 
+## Testing
+
+Find insomnia export file inside insomnia folder 
+
+
 ## Topics
 
 - Relational Databases
