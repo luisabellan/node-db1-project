@@ -18,15 +18,28 @@ router.get("/:id", async (req, res, next) => {
 
 		
 		//const messages = await db.first("*").from(messages).where("id", req.params.id) //it returns an array that's why we use bracket, to destructure the array
-		const accounts = await db("messages").where("id", req.params.id).first() // the same as above but a shortened version, as `db.first("*").from(messages)` is equivalent to `db("messages")`
-		res.json(message)
+		const accounts = await db("accounts").where("id", req.params.id).first() // the same as above but a shortened version, as `db.first("*").from(messages)` is equivalent to `db("messages")`
+		res.json(accounts)
 	} catch (err) {
 		next(err)
 	}
 })
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
+	try {
+		const payload = {
+			name: req.body.name,
+			budget: req.body.budget,
+		}
+		
+		// translates to `INSERT INTO "messages" ("title", "contents") VALUES (?, ?);`
+		const [id] = await db("accounts").insert(payload)
+		const account = await db("accounts").where("id", id).first()
 
+		res.json(account)
+	} catch (err) {
+		next(err)
+	}
 })
 
 router.put("/:id", (req, res, next) => {
