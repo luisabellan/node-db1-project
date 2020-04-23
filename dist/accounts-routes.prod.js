@@ -1,0 +1,1 @@
+"use strict";var express=require("express"),db=require("./data/dbConfig"),router=express.Router();router.get("/",function(e,r,t){}),router.get("/:id",function(e,r,t){}),router.post("/",function(e,r,t){}),router.put("/:id",function(e,r,t){}),router.delete("/:id",function(e,r,t){}),module.exports=router;

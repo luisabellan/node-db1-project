@@ -1,0 +1,1 @@
+"use strict";var express=require("express"),db=require("../data/dbConfig"),router=express.Router();router.get("/",function(e,r,t){return regeneratorRuntime.async(function(e){for(;;)switch(e.prev=e.next){case 0:try{r.json({message:"Welcome"})}catch(e){t(e)}case 1:case"end":return e.stop()}})}),module.exports=router;
