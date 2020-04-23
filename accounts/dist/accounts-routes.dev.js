@@ -81,7 +81,7 @@ router.post("/", function _callee3(req, res, next) {
           payload = {
             name: req.body.name,
             budget: req.body.budget
-          }; // translates to `INSERT INTO "messages" ("title", "contents") VALUES (?, ?);`
+          }; // translates to `INSERT INTO "accounts" ("title", "contents") VALUES (?, ?);`
 
           _context3.next = 4;
           return regeneratorRuntime.awrap(db("accounts").insert(payload));
@@ -121,7 +121,7 @@ router.put("/:id", function _callee4(req, res, next) {
           payload = {
             name: req.body.name,
             budget: req.body.budget
-          }; // translates to `UPDATE "messages" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
+          }; // translates to `UPDATE "accounts" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
 
           _context4.next = 4;
           return regeneratorRuntime.awrap(db("accounts").where("id", req.params.id).update(payload));
@@ -148,5 +148,30 @@ router.put("/:id", function _callee4(req, res, next) {
     }
   }, null, null, [[0, 10]]);
 });
-router["delete"]("/:id", function (req, res, next) {});
+router["delete"]("/:id", function _callee5(req, res, next) {
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.prev = 0;
+          _context5.next = 3;
+          return regeneratorRuntime.awrap(db("accounts").where("id", req.params.id).del());
+
+        case 3:
+          res.status(204).end();
+          _context5.next = 9;
+          break;
+
+        case 6:
+          _context5.prev = 6;
+          _context5.t0 = _context5["catch"](0);
+          next(_context5.t0);
+
+        case 9:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, null, null, [[0, 6]]);
+});
 module.exports = router;

@@ -32,7 +32,7 @@ router.post("/", async (req, res, next) => {
 			budget: req.body.budget,
 		}
 		
-		// translates to `INSERT INTO "messages" ("title", "contents") VALUES (?, ?);`
+		// translates to `INSERT INTO "accounts" ("title", "contents") VALUES (?, ?);`
 		const [id] = await db("accounts").insert(payload)
 		const account = await db("accounts").where("id", id).first()
 
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res, next) => {
 			budget: req.body.budget,
 		}
 
-		// translates to `UPDATE "messages" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
+		// translates to `UPDATE "accounts" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
 		await db("accounts").where("id", req.params.id).update(payload)
 		const updatedAccount = await db("accounts").where("id", req.params.id).first()
 
@@ -59,8 +59,14 @@ router.put("/:id", async (req, res, next) => {
 	}
 })
 
-router.delete("/:id", (req, res, next) => {
-
+router.delete("/:id", async (req, res, next) => {
+	try {
+		// translates to `DELETE FROM "accounts" WHERE "id" = ?;`
+		await db("accounts").where("id", req.params.id).del()
+		res.status(204).end()
+	} catch (err) {
+		next(err)
+	}
 })
 
 module.exports = router
