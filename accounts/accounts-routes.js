@@ -18,7 +18,6 @@ router.get("/:id", async (req, res, next) => {
 		// translates to `SELECT * FROM "accounts" WHERE "id" = ? LIMIT 1;`
 
 		
-		//const messages = await db.first("*").from(messages).where("id", req.params.id) //it returns an array that's why we use bracket, to destructure the array
 		const accounts = await db("accounts").where("id", req.params.id).first() // the same as above but a shortened version, as `db.first("*").from(messages)` is equivalent to `db("messages")`
 		res.json(accounts)
 	} catch (err) {
