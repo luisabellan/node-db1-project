@@ -42,8 +42,21 @@ router.post("/", async (req, res, next) => {
 	}
 })
 
-router.put("/:id", (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
+	try {
+		const payload = {
+			name: req.body.name,
+			budget: req.body.budget,
+		}
 
+		// translates to `UPDATE "messages" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
+		await db("accounts").where("id", req.params.id).update(payload)
+		const updatedAccount = await db("accounts").where("id", req.params.id).first()
+
+		res.json(updatedAccount)
+	} catch (err) {
+		next(err)
+	}
 })
 
 router.delete("/:id", (req, res, next) => {

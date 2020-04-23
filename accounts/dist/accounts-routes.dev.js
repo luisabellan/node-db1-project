@@ -111,6 +111,42 @@ router.post("/", function _callee3(req, res, next) {
     }
   }, null, null, [[0, 13]]);
 });
-router.put("/:id", function (req, res, next) {});
+router.put("/:id", function _callee4(req, res, next) {
+  var payload, updatedAccount;
+  return regeneratorRuntime.async(function _callee4$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.prev = 0;
+          payload = {
+            name: req.body.name,
+            budget: req.body.budget
+          }; // translates to `UPDATE "messages" SET "title" = ? AND "contents" = ? WHERE "id" = ?;`
+
+          _context4.next = 4;
+          return regeneratorRuntime.awrap(db("accounts").where("id", req.params.id).update(payload));
+
+        case 4:
+          _context4.next = 6;
+          return regeneratorRuntime.awrap(db("accounts").where("id", req.params.id).first());
+
+        case 6:
+          updatedAccount = _context4.sent;
+          res.json(updatedAccount);
+          _context4.next = 13;
+          break;
+
+        case 10:
+          _context4.prev = 10;
+          _context4.t0 = _context4["catch"](0);
+          next(_context4.t0);
+
+        case 13:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, null, null, [[0, 10]]);
+});
 router["delete"]("/:id", function (req, res, next) {});
 module.exports = router;
