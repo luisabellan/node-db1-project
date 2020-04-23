@@ -5,7 +5,8 @@ const router = express.Router()
 router.get("/", async (req, res, next) => {
 	try {
 		// translates to `SELECT * FROM "accounts";`
-		const accounts = await db.select("*").from("accounts")
+		// MVP const accounts = await db.select("*").from("accounts")
+		const accounts = await db.select("*").from("accounts").limit(10) //stretch: adding query string option (limit,sortby or sortdir)
 		res.json(accounts)
 	} catch (err) {
 		next(err)

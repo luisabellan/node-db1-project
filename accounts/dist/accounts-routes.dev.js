@@ -21,10 +21,11 @@ router.get("/", function _callee(req, res, next) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(db.select("*").from("accounts"));
+          return regeneratorRuntime.awrap(db.select("*").from("accounts").limit(10));
 
         case 3:
           accounts = _context.sent;
+          //stretch: adding query string option (limit,sortby or sortdir)
           res.json(accounts);
           _context.next = 10;
           break;
