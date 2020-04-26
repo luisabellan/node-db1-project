@@ -8,10 +8,13 @@ var welcomeRouter = require("./welcome/welcome-routes");
 
 var accountsRouter = require("./accounts/accounts-routes");
 
+var customersRouter = require("./customers/customers-routes");
+
 var PORT = process.env.PORT || 5000;
 server.use(express.json());
 server.use("/api/", welcomeRouter);
 server.use("/api/accounts", accountsRouter);
+server.use("/api/customers", customersRouter);
 server.use(function (err, req, res, next) {
   console.log(err);
   res.status(500).json({
