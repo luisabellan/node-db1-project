@@ -21,9 +21,9 @@ module.exports = {
     connection: {
       host: "localhost",
       // if the server is not running on your computer provide the network address
-      database: "./data/budget.db3",
+      database: "budget",
       // <-- update
-      user: "luis",
+      user: "postgres",
       // <-- update
       password: "guliguli23" // <-- update
 

@@ -19,8 +19,8 @@ module.exports = {
     client: "pg",
     connection: {
       host: "localhost", // if the server is not running on your computer provide the network address
-      database: "./data/budget.db3", // <-- update
-      user: "luis", // <-- update
+      database: "budget", // <-- update
+      user: "postgres", // <-- update
       password: "guliguli23", // <-- update
     },
     pool: {

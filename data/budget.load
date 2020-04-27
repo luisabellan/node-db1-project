@@ -1,0 +1,7 @@
+load database
+     from sqlite:///home/luis/git/node-db1-project/data/budget.db3
+     into postgresql:///budget
+
+ with include drop, create tables, create indexes, reset sequences
+
+  set work_mem to '16MB', maintenance_work_mem to '512 MB';
